@@ -14,20 +14,20 @@ train_logistic <- function(training_set, training_lbls, dev_set, dev_lbls, lambd
     
     #Call minfunc 
     
-    optimal_model <- NULL
+    optimal_params <- NULL
     best_error_rate <- Inf
     
     for (lambda in lambdas){
         optim_res <- optim(par=theta, fn=logistic_cost, gr=logistic_grad, 
-                     X=training_set, y=training_lbls,lambda=lambda)
+                     X=training_set, y=training_lbls,lambda=lambda, method="L-BFGS-B")
         
         # set lambda taking into consideration the Dev_set error rate!
         classified_lbls <- classify_logistic(dev_set,optim_res$par)
         error_rate <- compute_error(dev_lbls,classified_lbls)
         
         if (error_rate < best_error_rate)
-            optimal_model <- optim_res$par
+            optimal_params <- optim_res$par
     }
     
-    optimal_model
+    optimal_params
 }

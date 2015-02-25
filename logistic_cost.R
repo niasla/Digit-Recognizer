@@ -29,7 +29,7 @@ logistic_cost <- function(theta, X, y, lambda){
     #print(log(1-h))
     J <- (-1/m) * sum( y*log(h) + (1-y)*log(1-h) )
     theta_squared <- theta[-1]^2
-    theta_squared <- rbind(theta[1],theta_squared) 
+    #theta_squared <- rbind(theta[1],theta_squared) 
     J <- J + (lambda/(2*m)) * sum(theta_squared)
     J
     #print(J)

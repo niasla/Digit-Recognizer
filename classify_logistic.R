@@ -8,7 +8,8 @@ classify_logistic <- function (test_set, logistic_models){
 #         theta[,i] = logistic_models[i][2]
 #     }
 #     
-    X_matrix <- test_set
+    X_matrix <- as.matrix(test_set)
+    
     theta <- logistic_models  
     
     h <- 1/(1+exp(-X_matrix%*%as.matrix(theta) ) )   
